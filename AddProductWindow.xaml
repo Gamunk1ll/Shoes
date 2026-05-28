@@ -1,0 +1,45 @@
+﻿<Window x:Class="Shoes.AddProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Shoes"
+        mc:Ignorable="d"
+        Title="AddProductWindow" Height="450" Width="800">
+    <Grid Height="434" VerticalAlignment="Top">
+        <Grid Margin="0,0,0,174">
+            <Border Margin="10,10,596,0">
+                <Image x:Name="PhotoProductImage" Source="/picture.png" Margin="0,-19,0,19"/>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="2" Margin="209,0,147,0">
+                <StackPanel>
+                    <ComboBox x:Name="TypeComboBox">
+                        <ComboBoxItem>Женская обувь</ComboBoxItem>
+                        <ComboBoxItem>Мужская обувь</ComboBoxItem>
+                    </ComboBox>
+                    <TextBox x:Name="ArticleTextBox" TextWrapping="Wrap" Text="TextBox" Width="400" FontWeight="Bold" FontSize="16"/>
+                    <TextBox x:Name="NameTextBox" TextWrapping="Wrap" Text="TextBox" Width="400" FontWeight="Bold" FontSize="16"/>
+                    <TextBox x:Name="DescriptionTextBox" TextWrapping="Wrap" Text="TextBox" Width="400"/>
+                    <ComboBox x:Name="ManufactureComboBox">
+                        <ComboBoxItem>Kari</ComboBoxItem>
+                        <ComboBoxItem>Marco Tozzi</ComboBoxItem>
+                        <ComboBoxItem>Poc</ComboBoxItem>
+                        <ComboBoxItem>Rieker</ComboBoxItem>
+                        <ComboBoxItem>Alessio Nesca</ComboBoxItem>
+                        <ComboBoxItem>CROSBY</ComboBoxItem>
+                    </ComboBox>
+                    <TextBox x:Name="SupplierNameTextBox" TextWrapping="Wrap" Text="TextBox" Width="400"/>
+                    <TextBox x:Name="PriceTextBox" TextWrapping="Wrap" Text="" Width="400"/>
+                    <TextBox x:Name="UnitMetricTextBox" TextWrapping="Wrap" Text="TextBox" Width="400"/>
+                    <TextBox x:Name="AmountTextBox" TextWrapping="Wrap" Text="TextBox" Width="400"/>
+                </StackPanel>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="2" Margin="658,0,10,0">
+                <TextBox x:Name="DiscountTextBox" TextWrapping="Wrap" Text="TextBox" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+        </Grid>
+        <Button x:Name="SelectImageButton" Content="Выбрать изображение" HorizontalAlignment="Left" Margin="34,198,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.829,-0.633" Width="143" Height="28" Click="SelectImageButton_Click"/>
+        <Button x:Name="SaveButton" Content="Сохранить" HorizontalAlignment="Left" Margin="34,282,0,0" VerticalAlignment="Top" Height="43" Width="144" Click="SaveButton_Click"/>
+        <Button x:Name="BackButton" Content="Назад" HorizontalAlignment="Left" Margin="616,282,0,0" VerticalAlignment="Top" Height="42" Width="144" Click="BackButton_Click"/>
+    </Grid>
+</Window>
