@@ -37,7 +37,7 @@ public partial class ShoesContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source =localhost\\SQLEXPRESS; Trust Server Certificate = true; Integrated Security = true; Initial Catalog = Shoes;");
+        => optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Shoes;Trusted_Connection=true;TrustServerCertificate=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

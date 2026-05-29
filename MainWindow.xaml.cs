@@ -21,27 +21,20 @@ namespace Shoes
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            try
+            var DB = new ShoesContext();
+            var login = UserLoginTextBox.Text;
+            var password = UserPasswordPasswordBox.Password;
+            var result = DB.Users.Where(x => x.Login == login && x.Password == password).FirstOrDefault();
+            if (result != null)
             {
-                var DB = new ShoesContext();
-                var login = UserLoginTextBox.Text;
-                var password = UserPasswordPasswordBox.Password;
-                var result = DB.Users.Where(x=>x.Login ==  login && x.Password==password).FirstOrDefault();
-                if (result != null)
-                {
-                    MessageBox.Show("Вы успешно авторизировались!");
-                    UserSingleton.GetUser = result;
-                    new ListProductWindow().Show();
-                    Close();
-                }
-                else 
-                {
-                    MessageBox.Show("Неверный логин или пароль!", "Ошибка!", MessageBoxButton.OK,MessageBoxImage.Error);
-                }
+                MessageBox.Show("Вы успешно авторизировались!");
+                UserSingleton.GetUser = result;
+                new ListProductWindow().Show();
+                Close();
             }
-            catch 
+            else
             {
-                MessageBox.Show("Произошла ошибка");
+                MessageBox.Show("Неверный логин или пароль!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

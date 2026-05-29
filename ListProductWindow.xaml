@@ -23,5 +23,6 @@
         </ComboBox>
         <Button x:Name="AddProductButton" Content="Добавить товар" HorizontalAlignment="Left" Margin="611,83,0,0" VerticalAlignment="Top" Height="27" Width="113" Click="AddProductButton_Click" Visibility="Hidden"/>
         <Button x:Name="DeleteProductButton" Content="Удалить товар" HorizontalAlignment="Left" Margin="493,83,0,0" VerticalAlignment="Top" Height="27" Width="113" Click="DeleteProductButton_Click" Visibility="Hidden"/>
+        <Button x:Name="OrdersProductButton" Content="Заказы" HorizontalAlignment="Left" Margin="118,83,0,0" VerticalAlignment="Top" Height="27" Width="114"  Visibility="Hidden" Click="OrdersProductButton_Click"/>
     </Grid>
 </Window>

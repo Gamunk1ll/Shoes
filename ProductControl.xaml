@@ -14,7 +14,7 @@
                 <StackPanel>
                     <TextBlock x:Name="TypeNameTextBlock" TextWrapping="Wrap" Text="TextBlock" Width="400" FontWeight="Bold" FontSize="16"/>
                     <TextBlock x:Name="DescriptionTextBlock" TextWrapping="Wrap" Text="TextBlock" Width="400"/>
-                    <TextBlock x:Name="ManufacturerNametextBlock" TextWrapping="Wrap" Text="TextBlock" Width="400"/>
+                    <TextBlock x:Name="ManufacturerNameTextBlock" TextWrapping="Wrap" Text="TextBlock" Width="400"/>
                     <TextBlock x:Name="SupplierNameTextBlock" TextWrapping="Wrap" Text="TextBlock" Width="400"/>
                     <TextBlock x:Name="PriceTextBlock" TextWrapping="Wrap" Text="" Width="400">
                         <Run x:Name="OldPrice"/>

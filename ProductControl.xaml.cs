@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace Shoes
 {
-    /// <summary>
-    /// Логика взаимодействия для ProductControl.xaml
-    /// </summary>
     public partial class ProductControl : UserControl
     {
         public Product CurrentProduct;
@@ -26,38 +23,38 @@ namespace Shoes
         {
             InitializeComponent();
             CurrentProduct = currentProduct;
-
-            TypeNameTextBlock.Text = $"{currentProduct.CategoryNavigation.Name}| {currentProduct.Name} ";
+            TypeNameTextBlock.Text = $"{currentProduct.CategoryNavigation.Name}| {currentProduct.Name}";
             DescriptionTextBlock.Text = $"{currentProduct.Description}";
-            ManufacturerNametextBlock.Text = $"{currentProduct.ManufacturerNavigation.Name}";
+            ManufacturerNameTextBlock.Text = $"{currentProduct.ManufacturerNavigation.Name}";
             SupplierNameTextBlock.Text = $"{currentProduct.SupplierNavigation.Name}";
             UnitMetricTextBlock.Text = $"{currentProduct.UnitMetric}";
             AmountTextBlock.Text = $"{currentProduct.Amount}";
             DiscountTextBlock.Text = $"{currentProduct.Discount}";
 
             if (currentProduct.Discount > 15)
-            {
                 this.Background = Brushes.SeaGreen;
-            }
+
             if (currentProduct.Amount == 0)
-            {
                 AmountTextBlock.Background = Brushes.LightBlue;
-            }
+
             if (currentProduct.Discount > 0)
             {
                 OldPrice.Text = $"{currentProduct.Price}";
                 OldPrice.Foreground = Brushes.Red;
                 OldPrice.TextDecorations = TextDecorations.Strikethrough;
-                NewPrice.Text = $"{currentProduct.Price - CurrentProduct.Price*currentProduct.Discount/100}";
+                NewPrice.Text = $"{currentProduct.Price - currentProduct.Price * currentProduct.Discount / 100}";
             }
             else
-            { 
-                PriceTextBlock.Text=$"{currentProduct.Price}";
-            }
-            if(currentProduct.Photo!=null)
             {
-                var uri = new Uri($"C:\\Users\\albnu\\source\\repos\\Shoes\\Shoes\\Resources\\{currentProduct.Photo}");
-                PhotoProductImage.Source = new BitmapImage(uri);
+                PriceTextBlock.Text = $"{currentProduct.Price}";
+            }
+
+            if (currentProduct.Photo != null)
+            {
+                string exeDir = AppDomain.CurrentDomain.BaseDirectory;
+                string fullPath = System.IO.Path.Combine(exeDir, "Resources", currentProduct.Photo);
+                if (System.IO.File.Exists(fullPath))
+                    PhotoProductImage.Source = new BitmapImage(new Uri(fullPath));
             }
         }
     }
