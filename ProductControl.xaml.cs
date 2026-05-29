@@ -49,13 +49,15 @@ namespace Shoes
                 PriceTextBlock.Text = $"{currentProduct.Price}";
             }
 
-            if (currentProduct.Photo != null)
+            try
             {
-                string exeDir = AppDomain.CurrentDomain.BaseDirectory;
-                string fullPath = System.IO.Path.Combine(exeDir, "Resources", currentProduct.Photo);
-                if (System.IO.File.Exists(fullPath))
-                    PhotoProductImage.Source = new BitmapImage(new Uri(fullPath));
+                if (currentProduct.Photo != null)
+                {
+                    var uri = new Uri($"C:\\Users\\albnu\\source\\repos\\Shoes\\Shoes\\Resources\\{currentProduct.Photo}");
+                    PhotoProductImage.Source = new BitmapImage(uri);
+                }
             }
+            catch { }
         }
     }
 }
