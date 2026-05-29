@@ -20,7 +20,7 @@ namespace Shoes
         List<Product> products;
         public ListProductWindow()
         {
-            InitializeComponent();
+            InitializeComponent();   
             if (UserSingleton.GetUser != null)
             {
                 FullnameTextBlock.Text = $"{UserSingleton.GetUser.Surname} {UserSingleton.GetUser.Name} {UserSingleton.GetUser.Patronymic}";

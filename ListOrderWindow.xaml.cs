@@ -72,7 +72,8 @@ namespace Shoes
                 OrderControl orderControl = (OrderControl)OrderListBox.SelectedItem;
                 if (orderControl != null)
                 {
-
+                    new AddEditOrder(orderControl.CurrentOrder).Show();
+                    Close();
                 }
             }
         }

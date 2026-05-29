@@ -27,8 +27,8 @@ namespace Shoes
 
             OrderStatusComboBox.SelectedValue = order.OrderStatus;
             PickPointComboBox.SelectedValue = order.PickPointAddress;
-            OrderDatePicker.SelectedDate = order.OrderDate;
-            DeliveryDatePicker.SelectedDate = order.DeliveryDate;
+            OrderDateTextBox.Text = order.OrderDate?.ToString("dd.MM.yyyy") ?? "";
+            DeliveryDateTextBox.Text = order.DeliveryDate?.ToString("dd.MM.yyyy") ?? "";
 
             var orderProduct = new ShoesContext().OrderProducts
                 .Where(x => x.NumberOrder == order.Id)
@@ -43,8 +43,10 @@ namespace Shoes
             OrderStatusComboBox.ItemsSource = DB.OrderStatuses.ToList();
             OrderStatusComboBox.DisplayMemberPath = "OrderStatus1";
             OrderStatusComboBox.SelectedValuePath = "Id";
-            PickPointComboBox.ItemsSource = DB.PickPoints.ToList();
-            PickPointComboBox.DisplayMemberPath = "City";
+
+            var pickPoints = DB.PickPoints.ToList();
+            PickPointComboBox.ItemsSource = pickPoints;
+            PickPointComboBox.DisplayMemberPath = "FullAddress";
             PickPointComboBox.SelectedValuePath = "Id";
         }
 
@@ -52,10 +54,28 @@ namespace Shoes
         {
             if (OrderStatusComboBox.SelectedValue == null ||
                 PickPointComboBox.SelectedValue == null ||
-                OrderDatePicker.SelectedDate == null ||
-                DeliveryDatePicker.SelectedDate == null)
+                string.IsNullOrEmpty(OrderDateTextBox.Text) ||
+                string.IsNullOrEmpty(DeliveryDateTextBox.Text))
             {
                 MessageBox.Show("Заполните все поля!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (!DateTime.TryParse(OrderDateTextBox.Text, out DateTime orderDate))
+            {
+                MessageBox.Show("Неверный формат даты заказа! Используйте дд.мм.гггг", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (!DateTime.TryParse(DeliveryDateTextBox.Text, out DateTime deliveryDate))
+            {
+                MessageBox.Show("Неверный формат даты доставки! Используйте дд.мм.гггг", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (deliveryDate <= orderDate)
+            {
+                MessageBox.Show("Дата доставки должна быть позже даты заказа!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -76,8 +96,8 @@ namespace Shoes
 
             order.OrderStatus = (int)OrderStatusComboBox.SelectedValue;
             order.PickPointAddress = (int)PickPointComboBox.SelectedValue;
-            order.OrderDate = OrderDatePicker.SelectedDate.Value;
-            order.DeliveryDate = DeliveryDatePicker.SelectedDate.Value;
+            order.OrderDate = orderDate;
+            order.DeliveryDate = deliveryDate;
 
             if (CurrentOrder != null)
                 DB.Orders.Update(order);
@@ -86,11 +106,12 @@ namespace Shoes
 
             DB.SaveChanges();
             MessageBox.Show(editOrAdd, "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
-            Close();
+
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            new ListOrderWindow().Show();
             Close();
         }
     }

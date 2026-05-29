@@ -13,11 +13,11 @@
                     <TextBox x:Name="ArticleTextBox" TextWrapping="Wrap" Text="" Width="400" FontWeight="Bold" FontSize="16"/>
                     <ComboBox x:Name="OrderStatusComboBox" Margin="0,5,0,5"/>
                     <ComboBox x:Name="PickPointComboBox" Margin="0,5,0,5"/>
-                    <DatePicker x:Name="OrderDatePicker" Margin="0,5,0,5"/>
+                    <TextBox x:Name="OrderDateTextBox" Margin="0,5,0,5"/>
                 </StackPanel>
             </Border>
             <Border BorderBrush="Black" BorderThickness="2" Margin="658,0,10,0">
-                <DatePicker x:Name="DeliveryDatePicker" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox x:Name="DeliveryDateTextBox" VerticalAlignment="Center" HorizontalAlignment="Center" Width="77"/>
             </Border>
         </Grid>
         <Button x:Name="SaveButton" Content="Сохранить" HorizontalAlignment="Left" Margin="34,282,0,0" VerticalAlignment="Top" Height="43" Width="144" Click="SaveButton_Click"/>
